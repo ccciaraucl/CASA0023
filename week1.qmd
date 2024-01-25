@@ -1,3 +1,22 @@
 ##week 1
 
-week 1 notes bla bla bla
+# Remote Sensing Applications
+Satellite data gives a broader view of large-scale changes on the Earth's surface and can be useful for many applications, such as locating illegal deforestation, tracking urban growth, predicting the weather, and even measuring economic activity or the effects of climate change (CITE). The European Union's Copernicus programme allows open access to historical and up-to-date data from six satellites orbiting the Earth. 
+
+
+#Basics of nanometer wavelengths
+Satellites pick up different "bands" or wavelengths of colours, including red, green, blue, and near-infrared. Each band monitors part of the electromagnetic spectrum, and records the value of that band for each pixel of the recorded image. These bands can be combined in different ways to visualise different information from satellite images. This process is also called putting the bands through colour guns. 
+
+IMAGE
+
+A "true colour" image was made here with QGIS by combining (WHATEVER), to give an view of what the region might look like to the human eye. 
+
+IMAGE
+
+Here, a (vegetation or whatever) map was made by combining (STUFF), more detailed description.
+
+Another method can be utilised to find out specific details about the area being analysed. By comparing the red band against the near-infrared band, a plot known as either a "spectral feature space" or a "tasselled cap" can be created. These plots show the region's comparative brightness, greenness, and wetness, indicating the presence of urban area, vegetation, or moisture.
+IMAGE
+
+Reflections
+Working with SNAP was quite challenging as I found the program crashed on me very frequently, but it was still interesting to explore some basic uses of different bands to show different environmental qualities of my survey area. I'm excited to continue to explore different ways of exploring satellite data to extract more knowledge, and thinking of more purposes for the implementation of these processes.
