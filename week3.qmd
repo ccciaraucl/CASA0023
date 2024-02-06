@@ -1,0 +1,77 @@
+---
+editor: 
+  markdown: 
+    wrap: sentence
+---
+
+## Week 3: Data corrections
+
+### Summary
+
+This week we looked at possible data errors that can arise during the data collection process and how they can be corrected.
+These largely concern either geometric or atmospheric errors.
+We also examined methods of visual enhancement of certain data characteristics that allow us to learn more about specific aspects of the environment difficult to otherwise pick out from regular colorband representations.
+
+Geometric error calibration Geometric errors often arise from miscalibration in where the camera is pointed, leading to data being off-kilter from their true locations.
+The view angle may be off nadir, or the satellite may be slightly off its orbit path.
+This issue can be fixed with by identifying control points within the incorrect data and a control image, identifying their spatial relationship and applying a linear regression to convert all of the data to the coordinates of the control data.
+
+Atmospheric error calibration Atmospheric errors arise from light scattering against atmospheric particles and entering the lens, appearing as haze.
+Or in more scientific terms, additive path radiance can cause at sensor radiance to differ from surface total radiance.
+This can be corrected through absolute or relative methods.
+Absolute methods use atmospheric data or satellite targets to measure the amount of atmospheric interference and automatically correct it.
+Relative methods approximate this adjustment without access to other forms of data, through use of methods such as dark object subtraction or pseudo-invariant features.
+These methods estimate what the data should look like based on a couple of reference points and transforms the data to fit those references.
+
+Merging In today's activity we examined how to merge multiple observation tiles to create a larger image, useful when studying a large area.
+Other forms of merging can combine different kinds of sensor outputs, such as the merging of active and passive sensors, to enhance data from a study area.
+Other forms of data enhancement are also possible without merging; NDVI indexes can be visually represented to show vegetation levels and health more clearly, and texture can also be represented to show the relationships between the values of different pixels more clearly.
+
+### Applications
+
+Two interesting applications of merging can be found in Rudner et al (2019) and Belenguer-Plomer et al (2021).
+Both of these studies merge optical band data from Sentinel-2 with radar data from Sentinel-1 to gain more information in the wake of natural disasters that can obscure typical remote sensing methods.
+
+In Rudner et al, researchers aimed to remediate the issues of limited or slow satellite data in the wake of floods, when data is urgently needed for search and rescue operations in order to prioritise the areas worst affected.
+They combined data of not only multiple types (optical and radar) but also multiple temporalities (before and after the disaster) and multiple resolutions.
+These methods focus on speed of data availability to first responders.
+Radar data is used to immediately identify which areas have been flooded as water responds differently to radar than buildings do, and can be detected even in stormy weather that can prevent optical band sensing.
+Optical bands can come in handy later once water levels have fallen and "before" images can be compared to "after" images to ascertain areas of worst damage.
+
+In Belenguer-Plomer et al, ten different environment types around the world were recorded with optical band data and radar data before and after fires, in order to develop a neural network capable of identifying burned areas and estimating the severity of the burn.
+The following data is fed into a convolutional neural network; the Normalised Difference Vegetation Index (NDVI), the Normalised Burn Ratio, the Normalised Difference Water Index, the Mid Infrared Burn Index, and the optical band data from before and after the fire.
+These indices are all obtained from data enhancement methods studied this week.
+The use of radar in this case also contributed data on structural change and moisture that could give clues to which areas had and had not been burned.
+After training on one set of sites, the neural network was tested on another set of sites with similar biomes, showing varying accuracy levels across different types of land cover.
+They recorded increased accuracy when adding radar data to the usual optical band information used.
+
+Both of these studies engage in complex pre-processing and data integration methods, and both also rely on convolutional neural networks (CNN's) for processing the integrated data and identifying areas of concern.
+Both succeed in certain areas while possibly falling short in others.
+
+Rudner et al can deliver results quickly, as it uses data captured before, during, and after the floods with the intent of making the data readable and actionable at all phases.
+However, due to the narrow breadth of its training scenario, it could struggle under alternative conditions such as different flood patterns or another type of landscape.
+Belenguer-Plomer et al shows the necessity of adjusting algorithms to be prepared for different scenarios and environments, as the neural network was shown to have varying accuracy rates in differing biomes even when taking that variation into account during the training process.
+Belenguer-Plomer et al also reports its accuracy levels, which Rudner et al fails to do.
+However, Belenguer-Plomer et al also has certain shortcomings.
+Due to the extensive preprocessing required and the need for data captured before and after the event, it likely would not have the same rapid applicability as the Rudner et al study.
+
+### Reflections
+
+Some of the "radiance" vs "reflectance" etc jargon is difficult to remember.
+I found the use of linear regression for image correction to be very interesting as I use linear regression often in data science research contexts but have not thought much about its practical uses in geography.
+Even though the process sounds complicated and I don't know if I want to get too far into it, particularly because corrected data is already easy to access, this has made me more interested in the transformative applications of regression equations.
+It's interesting to hear about how different issues can arise and the correction methods implemented to solve them, and I understand why this is important for us to know, but I still find myself more interested in the enhancement aspects and particularly in the NDVI index.
+In my undergraduate degree I studied environmental anthropology and invasive ecosystems, so it is super cool to see remote sensing used in research on the topic.
+
+#### References
+Belenguer-Plomer, M.A., Tanase, M.A., Chuvieco, E.
+and Bovolo, F., 2021.
+"CNN-based burned area mapping using radar and optical data".
+Remote Sensing of Environment, 260, p.112468.
+https://www.sciencedirect.com/science/article/pii/S0034425721001863?v
+ia%3Dihub
+
+​​Rudner, T.G., Rußwurm, M., Fil, J., Pelich, R., Bischke, B., Kopačková, V. and Biliński, P., 2019, July.
+"Multi3net: segmenting flooded buildings via fusion of multiresolution, multisensor, and multitemporal satellite imagery".
+In Proceedings of the AAAI Conference on Artificial Intelligence (Vol. 33, No. 01, pp. 702-709).
+https://ojs.aaai.org/index.php/AAAI/article/view/3848
